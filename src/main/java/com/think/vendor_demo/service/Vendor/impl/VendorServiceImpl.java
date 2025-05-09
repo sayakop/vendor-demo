@@ -33,23 +33,21 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public boolean deleteVendor(String vendorId) {
-        if(vendorRepository.existsById(vendorId))
-        {
-            vendorRepository.deleteById(vendorId);
-            return true;
-        }
-        else{
-            return false;
-        }
+    public boolean deleteVendor(long vendorId) {
+        // More Business Logic
+        if(vendorRepository.findById(vendorId).isEmpty())
+            throw new NotFoundVendorException("Requested Vendor does not exist");
+        vendorRepository.deleteById(vendorId);
+        return true;
     }
 
     @Override
     public Vendor getVendor(String vendorId) {
         // More Business Logic
-        if(vendorRepository.findById(vendorId).isEmpty())
+        Long vendorIdLong = Long.parseLong(vendorId);
+        if(vendorRepository.findById(vendorIdLong).isEmpty())
             throw new NotFoundVendorException("Requested Vendor does not exist");
-        return vendorRepository.findById(vendorId).get();
+        return vendorRepository.findById(vendorIdLong).get();
     }
 
     @Override

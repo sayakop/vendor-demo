@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 public class Vendor {
 
     @Id
-    private String vendorId;
+    private long vendorId;
     private String vendorName;
     private String vendorAddress;
     private String vendorPhoneNumber;
@@ -19,7 +19,7 @@ public class Vendor {
 
 
     public Vendor
-    (String vendorId, String vendorName, String vendorAddress, String vendorPhoneNumber,String vendorAge) {
+    (long vendorId, String vendorName, String vendorAddress, String vendorPhoneNumber,String vendorAge) {
         this.vendorId = vendorId;
         this.vendorName = vendorName;
         this.vendorAddress = vendorAddress;
@@ -28,10 +28,10 @@ public class Vendor {
     }
 
 
-    public String getVendorId() {
+    public long getVendorId() {
         return vendorId;
     }
-    public void setVendorId(String vendorId) {
+    public void setVendorId(long vendorId) {
         this.vendorId = vendorId;
     }
     public String getVendorName() {

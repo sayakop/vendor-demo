@@ -29,10 +29,10 @@ public class VendorController
 
     //Get a specific Vendor from Database
     @GetMapping("{vendorId}")
-    public ResponseEntity<Object> getVendorDetails(@PathVariable("vendorId") String vendorId)
+    public ResponseEntity<Object> getVendorDetails(@PathVariable("vendorId") long vendorId)
     {
         return VendorResponseHandler.responseBuilder
-        ("Requested Vendor Details Given Here",HttpStatus.OK,vendorService.getVendor(vendorId));
+        ("Requested Vendor Details Given Here",HttpStatus.OK,vendorService.getVendor(String.valueOf(vendorId)));
     
     }
 
@@ -64,7 +64,7 @@ public class VendorController
     }
 
     @DeleteMapping("/{vendorId}")
-    public ResponseEntity<String> deleteVendorDetails(@PathVariable("vendorId") String vendorId)
+    public ResponseEntity<String> deleteVendorDetails(@PathVariable("vendorId") long vendorId)
     {
         boolean isVendorDeleted = vendorService.deleteVendor(vendorId);
         if(isVendorDeleted)
