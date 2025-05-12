@@ -63,7 +63,6 @@ public class VendorController
     }
 
     @PutMapping("")
-
     public String updateVendorDetails(@RequestBody Vendor vendor)
     {
         vendorService.updateVendor(vendor);
