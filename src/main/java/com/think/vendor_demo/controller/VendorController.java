@@ -29,12 +29,20 @@ public class VendorController
 
     //Get a specific Vendor from Database
     @GetMapping("{vendorId}")
-    public ResponseEntity<Object> getVendorDetails(@PathVariable("vendorId") long vendorId)
+    public ResponseEntity<Object> getVendorDetails(@PathVariable("vendorId") long vendorId,
+    @RequestParam(name = "raw", required = false, defaultValue = "false") boolean raw)
     {
-        return VendorResponseHandler.responseBuilder
-        ("Requested Vendor Details Given Here",HttpStatus.OK,vendorService.getVendor(String.valueOf(vendorId)));
-    
+    Vendor vendor = vendorService.getVendor(vendorId); // Use your actual service method here
+    if (raw) {
+        return new ResponseEntity<>(vendor, HttpStatus.OK);
+    } else {
+        return VendorResponseHandler.responseBuilder(
+            "Requested Vendor Details Given Here",
+            HttpStatus.OK,
+            vendor
+        );
     }
+}
 
     //Get All Vendor Details from Database
     @GetMapping

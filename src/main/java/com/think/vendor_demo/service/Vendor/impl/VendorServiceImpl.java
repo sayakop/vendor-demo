@@ -42,12 +42,10 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public Vendor getVendor(String vendorId) {
+    public Vendor getVendor(long vendorId) {
         // More Business Logic
-        Long vendorIdLong = Long.parseLong(vendorId);
-        if(vendorRepository.findById(vendorIdLong).isEmpty())
-            throw new NotFoundVendorException("Requested Vendor does not exist");
-        return vendorRepository.findById(vendorIdLong).get();
+        return vendorRepository.findById(vendorId)
+                .orElseThrow(() -> new NotFoundVendorException("Requested Vendor does not exist"));
     }
 
     @Override
