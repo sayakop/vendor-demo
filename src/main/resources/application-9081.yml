@@ -1,0 +1,11 @@
+server:
+  port: 9081
+
+spring:
+  application:
+    name: vendor-demo
+
+eureka:
+  instance:
+    instance-id: vendor-demo:9081
+    hostname: localhost
